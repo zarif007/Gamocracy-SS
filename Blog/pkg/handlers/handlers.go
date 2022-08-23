@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
-	"github.com/zarif007/Gamocracy-SS/pkg/blog"
+	"github.com/zarif007/Gamocracy-SS/Blog/pkg/blog"
 )
 
 var ErrorMethodNotAllowed = "Method not allowed"

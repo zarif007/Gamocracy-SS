@@ -1,4 +1,4 @@
-package Blog
+package blog
 
 import (
 	"encoding/json"
@@ -14,13 +14,13 @@ import (
 var (
 	ErrorFailedToUnmarshalRecord = "failed to unmarshal record"
 	ErrorFailedToFetchRecord     = "failed to fetch record"
-	ErrorInvalidUserData         = "invalid user data"
+	ErrorInvalidBlogData         = "invalid Blog data"
 	ErrorInvalidEmail            = "invalid email"
 	ErrorCouldNotMarshalItem     = "could not marshal item"
 	ErrorCouldNotDeleteItem      = "could not delete item"
 	ErrorCouldNotDynamoPutItem   = "could not dynamo put item"
-	ErrorUserAlreadyExists       = "userUser already exists"
-	ErrorUserDoesNotExist        = "userUser does not exist"
+	ErrorBlogAlreadyExists       = "BlogBlog already exists"
+	ErrorBlogDoesNotExist        = "BlogBlog does not exist"
 )
 
 type Blog struct {

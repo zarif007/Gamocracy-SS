@@ -1,4 +1,4 @@
-module github.com/zarif007/Gamocracy-SS
+module github.com/zarif007/Gamocracy-SS/Blog
 
 go 1.18
 
