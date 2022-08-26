@@ -24,17 +24,18 @@ var (
 )
 
 type Blog struct {
-	Email     string `json:"email"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
+	BlogId     string `json:"blogId"`
+	CoverImage     string `json:"coverImage"`
+	Title string `json:"title"`
+	Content  string `json:"content"`
 }
 
-func FetchBlog(email, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Blog, error) {
+func FetchBlog(blogId, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Blog, error) {
 
 	input := &dynamodb.GetItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
-			"email": {
-				S: aws.String(email),
+			"blogId": {
+				S: aws.String(blogId),
 			},
 		},
 		TableName: aws.String(tableName),
@@ -77,8 +78,8 @@ func CreateBlog(req events.APIGatewayProxyRequest, tableName string, dynaClient 
 		return nil, errors.New(ErrorInvalidBlogData)
 	}
 	
-	currentBlog, _ := FetchBlog(u.Email, tableName, dynaClient)
-	if currentBlog != nil && len(currentBlog.Email) != 0 {
+	currentBlog, _ := FetchBlog(u.BlogId, tableName, dynaClient)
+	if currentBlog != nil && len(currentBlog.BlogId) != 0 {
 		return nil, errors.New(ErrorBlogAlreadyExists)
 	}
 
@@ -109,8 +110,8 @@ func UpdateBlog(req events.APIGatewayProxyRequest, tableName string, dynaClient 
 		return nil, errors.New(ErrorInvalidEmail)
 	}
 
-	currentBlog, _ := FetchBlog(u.Email, tableName, dynaClient)
-	if currentBlog != nil && len(currentBlog.Email) == 0 {
+	currentBlog, _ := FetchBlog(u.BlogId, tableName, dynaClient)
+	if currentBlog != nil && len(currentBlog.BlogId) == 0 {
 		return nil, errors.New(ErrorBlogDoesNotExist)
 	}
 
@@ -133,11 +134,11 @@ func UpdateBlog(req events.APIGatewayProxyRequest, tableName string, dynaClient 
 
 func DeleteBlog(req events.APIGatewayProxyRequest, tableName string, dynaClient dynamodbiface.DynamoDBAPI) error {
 
-	email := req.QueryStringParameters["email"]
+	blogId := req.QueryStringParameters["blogId"]
 	input := &dynamodb.DeleteItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
-			"email": {
-				S: aws.String(email),
+			"blogId": {
+				S: aws.String(blogId),
 			},
 		},
 		TableName: aws.String(tableName),

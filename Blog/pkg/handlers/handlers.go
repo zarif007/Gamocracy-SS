@@ -16,10 +16,10 @@ type ErrorBody struct {
 }
 
 func GetBlog(req events.APIGatewayProxyRequest, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*events.APIGatewayProxyResponse, error) {
-	email := req.QueryStringParameters["email"]
+	blogId := req.QueryStringParameters["blogId"]
 
-	if len(email) > 0 {
-		result, err := blog.FetchBlog(email, tableName, dynaClient)
+	if len(blogId) > 0 {
+		result, err := blog.FetchBlog(blogId, tableName, dynaClient)
 
 		if err != nil {
 			return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
