@@ -28,6 +28,7 @@ type Blog struct {
 	CoverImage     string `json:"coverImage"`
 	Title string `json:"title"`
 	Content  string `json:"content"`
+	Author  string `json:"author"`
 }
 
 func FetchBlog(blogId, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Blog, error) {
