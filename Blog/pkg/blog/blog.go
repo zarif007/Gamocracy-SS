@@ -23,6 +23,11 @@ var (
 	ErrorBlogDoesNotExist        = "BlogBlog does not exist"
 )
 
+type GamesForBlog struct {
+	Name     string `json:"name"`
+	Image   string  `json:"image"`
+}
+
 type Blog struct {
 	Type     string `json:"type"`
 	BlogId     string `json:"blogId"`
@@ -30,14 +35,9 @@ type Blog struct {
 	Title string `json:"title"`
 	Content  string `json:"content"`
 	Author  string `json:"author"`
-	SelectedGames  []gameForBlog `json:"selectedGames"`
+	SelectedGames  []GamesForBlog `json:"selectedGames"`
 	CreatedAt  string `json:"createdAt"`
 	UpdatedAt  string `json:"updatedAt"`
-}
-
-type gameForBlog struct {
-	name     string
-	image   string
 }
 
 func FetchBlog(blogId, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Blog, error) {
