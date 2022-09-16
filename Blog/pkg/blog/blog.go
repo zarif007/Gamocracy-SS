@@ -24,11 +24,20 @@ var (
 )
 
 type Blog struct {
+	Type     string `json:"type"`
 	BlogId     string `json:"blogId"`
 	CoverImage     string `json:"coverImage"`
 	Title string `json:"title"`
 	Content  string `json:"content"`
 	Author  string `json:"author"`
+	SelectedGames  []gameForBlog `json:"selectedGames"`
+	CreatedAt  string `json:"createdAt"`
+	UpdatedAt  string `json:"updatedAt"`
+}
+
+type gameForBlog struct {
+	name     string
+	image   string
 }
 
 func FetchBlog(blogId, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Blog, error) {
