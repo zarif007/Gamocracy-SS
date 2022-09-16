@@ -36,6 +36,7 @@ type Blog struct {
 	Content  string `json:"content"`
 	Author  string `json:"author"`
 	SelectedGames  []GamesForBlog `json:"selectedGames"`
+	SelectedCategories  []string `json:"selectedCategories"`
 	CreatedAt  string `json:"createdAt"`
 	UpdatedAt  string `json:"updatedAt"`
 }
