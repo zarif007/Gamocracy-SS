@@ -23,6 +23,11 @@ var (
 	ErrorPostDoesNotExist        = "PostPost does not exist"
 )
 
+type reaction struct {
+	Emoji string `json:"emoji"`
+	Reactors []string `json:"reactors"`
+}
+
 type Post struct {
 	Type     string `json:"type"`
 	PostId     string `json:"postId"`
@@ -32,6 +37,7 @@ type Post struct {
 	CreatedAt  string `json:"createdAt"`
 	UpdatedAt  string `json:"updatedAt"`
 	Images []string `json:"images"`
+	Reactions []reaction `json:"reactions"`
 }
 
 func FetchPost(postId, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Post, error) {
