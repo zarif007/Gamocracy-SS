@@ -39,6 +39,7 @@ type Blog struct {
 	SelectedCategories  []string `json:"selectedCategories"`
 	CreatedAt  string `json:"createdAt"`
 	UpdatedAt  string `json:"updatedAt"`
+	Views int `json:"views"`
 }
 
 func FetchBlog(blogId, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Blog, error) {
