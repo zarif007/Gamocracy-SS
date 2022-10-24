@@ -31,7 +31,7 @@ type Post struct {
 	Author  string `json:"author"`
 	CreatedAt  string `json:"createdAt"`
 	UpdatedAt  string `json:"updatedAt"`
-	Images []string `json:"views"`
+	Images []string `json:"images"`
 }
 
 func FetchPost(postId, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*Post, error) {
